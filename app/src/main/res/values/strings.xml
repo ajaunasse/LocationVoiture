@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">LocationVoiture</string>
+
+    <string name="text_bienvenue">Bienvenue sur l\'application de location de véhicule!</string>
+
+    <string name="login">Login :</string>
+    <string name="mot_de_passe">Mot de passe :</string>
+    <string name="btn_se_connecter">Se connecter</string>
+
+    <string name="details_agence">Détails Agence</string>
+    <string name="liste_vehicules">Liste Véhicules</string>
+    <string name="gestion_location">Gestion Location</string>
+    <string name="liste_clients">Liste Clients</string>
+
+    <!--FastDialog-->
+    <string name="ok">OK</string>
+    <string name="cancel">Annuler</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

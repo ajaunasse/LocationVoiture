@@ -1,13 +1,15 @@
-package fr.lokacar.locationvoiture;
+package fr.lokacar.locationvoiture.ui.vehicule;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import fr.lokacar.locationvoiture.R;
+
+public class LocationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_location);
     }
 }
