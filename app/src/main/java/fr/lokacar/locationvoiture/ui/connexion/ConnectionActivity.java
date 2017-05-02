@@ -18,13 +18,9 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URL;
-
 import fr.lokacar.locationvoiture.R;
-import fr.lokacar.locationvoiture.model.Client;
 import fr.lokacar.locationvoiture.model.Gerant;
 import fr.lokacar.locationvoiture.ui.accueil.AccueilActivity;
-import fr.lokacar.locationvoiture.ui.accueil.MainActivity;
 import fr.lokacar.locationvoiture.utils.Constant;
 import fr.lokacar.locationvoiture.utils.FastDialog;
 import fr.lokacar.locationvoiture.utils.Network;
@@ -80,22 +76,25 @@ public class ConnectionActivity extends AppCompatActivity {
                             public void onResponse(String response) {
                                 //Instanciation de l'objet GSON -> Conversion JSON - model
                                 try {
+                                    //Constructions objets Json à partir de response
                                     JSONObject reader = new JSONObject(response);
                                     boolean ok = reader.getBoolean("ok") ;
 
-                                    Gson gson = new Gson();
                                     JSONObject main  = reader.getJSONObject("object");
 
+                                    Gson gson = new Gson();
+                                    //Construction de notre objet gerant
                                     Gerant gerant = gson.fromJson(String.valueOf(main), Gerant.class);
 
                                     if(null != gerant){
                                         if(true == ok){
                                             //Si le mot de passe est correcte alors on est redirigé vers la page d'accueil
-                                            connectionValide();
+                                            connectionValide(gerant);
                                         }else{
                                             FastDialog.showDialog(ConnectionActivity.this,
                                                     FastDialog.SIMPLE_DIALOG,
                                                     "Mot de passe incorrect!");
+                                            editTextMdp.getText().clear();
                                         }
                                     }else{
                                         FastDialog.showDialog(ConnectionActivity.this,
@@ -134,8 +133,13 @@ public class ConnectionActivity extends AppCompatActivity {
     /**
      * Connection valide -> on est redirigé vers l'accueil
      */
-    private void connectionValide(){
+    private void connectionValide(Gerant gerant){
         Intent intent = new Intent(ConnectionActivity.this, AccueilActivity.class);
+
+        intent.putExtra("personneConnectee", gerant);
+
+        //On démarre notre activité ViewArticle
         startActivity(intent);
+        finish();
     }
 }

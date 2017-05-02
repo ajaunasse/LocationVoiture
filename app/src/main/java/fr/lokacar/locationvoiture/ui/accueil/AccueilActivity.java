@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import fr.lokacar.locationvoiture.R;
+import fr.lokacar.locationvoiture.model.Gerant;
 import fr.lokacar.locationvoiture.ui.client.ListClientsActivity;
 import fr.lokacar.locationvoiture.ui.vehicule.ListVehiculesActivity;
 import fr.lokacar.locationvoiture.ui.vehicule.LocationActivity;
@@ -33,7 +34,13 @@ public class AccueilActivity extends AppCompatActivity {
         btnListVehicules.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Gerant gerant = getIntent().getParcelableExtra("personneConnectee");
+
+                int idAgence = gerant.getAgence().getId();
+
                 Intent intent = new Intent(AccueilActivity.this, ListVehiculesActivity.class);
+                intent.putExtra("idAgence", idAgence);
+
                 startActivity(intent);
             }
         });
