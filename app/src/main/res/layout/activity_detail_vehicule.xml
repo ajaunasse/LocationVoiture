@@ -1,10 +1,15 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.vehicule.DetailVehiculeActivity">
+    tools:context="fr.lokacar.locationvoiture.ui.vehicule.DetailVehiculeActivity">
+
+    <include
+        layout="@layout/content_vehicule"
+        android:id="@+id/include" />
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -56,11 +61,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_edit_24dp"
-        app:rippleColor=""
         app:layout_anchor="@id/include"
         app:layout_anchorGravity="bottom|end"
         />
-    <include layout="@layout/content_vehicule"
-        android:id="@+id/include" />
 
 </android.support.design.widget.CoordinatorLayout>

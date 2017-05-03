@@ -1,10 +1,12 @@
 package fr.lokacar.locationvoiture.model;
 
+import java.io.Serializable;
+
 /**
  * Created by ddrapeau2015 on 02/05/2017.
  */
 
-public class Vehicule {
+public class Vehicule implements Serializable{
 
     private int id;
     private String immatriculation;

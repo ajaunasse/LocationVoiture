@@ -1,7 +1,10 @@
 package fr.lokacar.locationvoiture.ui.vehicule;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -30,7 +33,7 @@ import fr.lokacar.locationvoiture.utils.Constant;
 import fr.lokacar.locationvoiture.utils.FastDialog;
 import fr.lokacar.locationvoiture.utils.Network;
 
-public class ListVehiculesActivity extends AppCompatActivity {
+public class ListVehiculesActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private List<Vehicule> vehicules = new ArrayList<>();
 
@@ -41,6 +44,13 @@ public class ListVehiculesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_vehicules);
 
+        generateList();
+    }
+
+    /**
+     * Fonction de genration de la liste des vehicules avec l'appel à l'API Symfony
+     */
+    private void generateList() {
         int idAgence = getIntent().getIntExtra("idAgence", 1);
 
         listVehicules = (ListView) findViewById(R.id.list_vehicules);
@@ -64,15 +74,18 @@ public class ListVehiculesActivity extends AppCompatActivity {
 
                             Type listType = new TypeToken<ArrayList<Vehicule>>(){}.getType();
 
-                            List<Vehicule> yourClassList = new Gson().fromJson(response, listType);
+                            vehicules = new Gson().fromJson(response, listType);
 
                             //On ajoute les véhicules à la liste de notre vue
-                            listVehicules.setAdapter(new ArrayAdapter<Vehicule>(
+                            listVehicules.setAdapter(new VehiculeAdapter(  //ADAPTER
                                     ListVehiculesActivity.this,
-                                    android.R.layout.simple_list_item_1,
+                                    R.layout.item_vehicule,  //LAYOUT adapté
                                     vehicules)
                             );
-                                                        }
+
+                            //Ecouteur sur les éléments de la liste
+                            listVehicules.setOnItemClickListener(ListVehiculesActivity.this);
+                        }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
@@ -89,5 +102,19 @@ public class ListVehiculesActivity extends AppCompatActivity {
                     FastDialog.SIMPLE_DIALOG,
                     "Vous devez être connecté!");
         }
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        Intent intent = new Intent(ListVehiculesActivity.this, DetailVehiculeActivity.class);
+
+        //Envoyer un obbjet
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constant.INTENT_VEHICULE, vehicules.get(position));
+        intent.putExtras(bundle);
+
+        //On démarre notre activité DetailsVehiculeActivity
+        startActivity(intent);
     }
 }
