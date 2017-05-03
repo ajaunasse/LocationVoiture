@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Created by ddrapeau2015 on 02/05/2017.
  */
 
-public class Gerant extends Personne implements Serializable {
+public class Gerant extends Personne implements Serializable{
 
     private String email;
     private String password;
@@ -52,12 +52,4 @@ public class Gerant extends Personne implements Serializable {
         this.agence = agence;
     }
 
-    @Override
-    public String toString() {
-        return "Gerant{" +
-                "mail='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", agence=" + agence +
-                '}';
-    }
 }

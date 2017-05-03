@@ -1,10 +1,12 @@
 package fr.lokacar.locationvoiture.model;
 
+import java.io.Serializable;
+
 /**
  * Created by ddrapeau2015 on 02/05/2017.
  */
 
-public class Personne {
+public class Personne implements Serializable{
 
     private int id;
     private String nom;
@@ -45,12 +47,4 @@ public class Personne {
         this.prenom = prenom;
     }
 
-    @Override
-    public String toString() {
-        return "Personne{" +
-                "idPersonne=" + id +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                '}';
-    }
 }
