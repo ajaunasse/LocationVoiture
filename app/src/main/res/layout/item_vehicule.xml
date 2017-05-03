@@ -10,13 +10,13 @@
     <LinearLayout android:id="@+id/thumbnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="3dip"
+        android:padding="3dp"
         android:layout_alignParentLeft="true"
         android:background="@drawable/image_bg"
-        android:layout_marginRight="5dip">
+        android:layout_marginRight="5dp">
 
         <ImageView
-            android:id="@+id/list_image"
+            android:id="@+id/image_vehicule"
             android:layout_width="50dip"
             android:layout_height="50dip"
             />
@@ -25,7 +25,7 @@
 
     <!-- Title Of Song-->
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/thumbnail"
@@ -33,45 +33,43 @@
         android:text="Vehicule marque"
         android:textColor="#040404"
         android:typeface="sans"
-        android:textSize="15dip"
+        android:textSize="20sp"
         android:textStyle="bold"/>
 
-    <!-- Artist Name -->
     <TextView
-        android:id="@+id/artist"
+        android:id="@+id/textViewLibelle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
+        android:layout_below="@id/textViewTitle"
         android:textColor="#343434"
-        android:textSize="10dip"
-        android:layout_marginTop="1dip"
+        android:textSize="15sp"
+        android:layout_marginTop="1dp"
         android:layout_toRightOf="@+id/thumbnail"
         android:text="Vehicule libelle" />
 
-    <!-- Rightend Duration -->
     <TextView
         android:id="@+id/textViewPrix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/title"
+        android:layout_alignTop="@id/textViewTitle"
         android:gravity="right"
         android:text="prix"
-        android:layout_marginRight="5dip"
-        android:textSize="10dip"
+        android:layout_marginRight="5dp"
+        android:textSize="15sp"
         android:textStyle="bold"/>
-    <!-- Artist Name -->
+
     <TextView
         android:id="@+id/textViewLoue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewPrix"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/title"
         android:gravity="right"
         android:text="loue"
-        android:layout_marginRight="5dip"
-        android:textSize="10dip"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
         android:textStyle="bold"/>
 
 </RelativeLayout>

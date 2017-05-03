@@ -64,12 +64,12 @@ public class ListVehiculesActivity extends AppCompatActivity {
 
                             Type listType = new TypeToken<ArrayList<Vehicule>>(){}.getType();
 
-                            List<Vehicule> yourClassList = new Gson().fromJson(response, listType);
+                            vehicules = new Gson().fromJson(response, listType);
 
                             //On ajoute les véhicules à la liste de notre vue
-                            listVehicules.setAdapter(new ArrayAdapter<Vehicule>(
+                            listVehicules.setAdapter(new VehiculeAdapter(  //ADAPTER
                                     ListVehiculesActivity.this,
-                                    android.R.layout.simple_list_item_1,
+                                    R.layout.item_vehicule,  //LAYOUT adapté
                                     vehicules)
                             );
                                                         }
