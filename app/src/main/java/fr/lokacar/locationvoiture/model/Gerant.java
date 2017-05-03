@@ -1,10 +1,13 @@
 package fr.lokacar.locationvoiture.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by ddrapeau2015 on 02/05/2017.
  */
 
-public class Gerant extends Personne {
+public class Gerant extends Personne implements Parcelable {
 
     private String email;
     private String password;
@@ -17,6 +20,23 @@ public class Gerant extends Personne {
         this.password = password;
         this.agence = agence;
     }
+
+    protected Gerant(Parcel in) {
+        email = in.readString();
+        password = in.readString();
+    }
+
+    public static final Creator<Gerant> CREATOR = new Creator<Gerant>() {
+        @Override
+        public Gerant createFromParcel(Parcel in) {
+            return new Gerant(in);
+        }
+
+        @Override
+        public Gerant[] newArray(int size) {
+            return new Gerant[size];
+        }
+    };
 
     public String getEmail() {
         return email;
@@ -51,4 +71,14 @@ public class Gerant extends Personne {
                 '}';
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(email);
+        parcel.writeString(password);
+    }
 }
