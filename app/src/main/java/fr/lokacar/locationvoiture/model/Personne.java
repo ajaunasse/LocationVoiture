@@ -6,7 +6,7 @@ package fr.lokacar.locationvoiture.model;
 
 public class Personne {
 
-    private int idPersonne;
+    private int id;
     private String nom;
     private String prenom;
 
@@ -15,18 +15,18 @@ public class Personne {
 
     }
 
-    public Personne(int idPersonne, String nom, String prenom) {
-        this.idPersonne = idPersonne;
+    public Personne(int id, String nom, String prenom) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
     }
 
-    public int getIdPersonne() {
-        return idPersonne;
+    public int getId() {
+        return id;
     }
 
-    public void setIdPersonne(int idPersonne) {
-        this.idPersonne = idPersonne;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -48,7 +48,7 @@ public class Personne {
     @Override
     public String toString() {
         return "Personne{" +
-                "idPersonne=" + idPersonne +
+                "idPersonne=" + id +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 '}';

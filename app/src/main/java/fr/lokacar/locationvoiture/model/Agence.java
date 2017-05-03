@@ -1,17 +1,19 @@
 package fr.lokacar.locationvoiture.model;
 
+import java.io.Serializable;
+
 /**
  * Created by ddrapeau2015 on 02/05/2017.
  */
 
-public class Agence {
+public class Agence implements Serializable {
 
     private int id;
     private String nom;
     private String adresse;
     private String codepostal;
     private String ville;
-    private int cA;
+    private float cA;
 
     public Agence(int id, String nom, String adresse, String codepostal, String ville, int cA) {
         this.id = id;
@@ -62,7 +64,7 @@ public class Agence {
         this.ville = ville;
     }
 
-    public int getcA() {
+    public float getcA() {
         return cA;
     }
 
@@ -80,5 +82,9 @@ public class Agence {
                 ", ville='" + ville + '\'' +
                 ", cA=" + cA +
                 '}';
+    }
+
+    public String toString2() {
+        return nom + " - " + adresse ;
     }
 }

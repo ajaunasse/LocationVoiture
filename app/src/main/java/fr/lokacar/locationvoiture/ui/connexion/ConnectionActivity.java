@@ -14,6 +14,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -84,7 +86,7 @@ public class ConnectionActivity extends AppCompatActivity {
 
                                     Gson gson = new Gson();
                                     //Construction de notre objet gerant
-                                    Gerant gerant = gson.fromJson(String.valueOf(main), Gerant.class);
+                                    Gerant gerant = gson.fromJson( main.toString(), Gerant.class);
 
                                     if(null != gerant){
                                         if(true == ok){
@@ -103,6 +105,10 @@ public class ConnectionActivity extends AppCompatActivity {
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
+                                } catch (JsonSyntaxException jse) {
+                                    jse.printStackTrace();
+                                } catch (JsonParseException jpe) {
+                                    jpe.printStackTrace();
                                 }
 
 
@@ -134,11 +140,12 @@ public class ConnectionActivity extends AppCompatActivity {
      * Connection valide -> on est redirigé vers l'accueil
      */
     private void connectionValide(Gerant gerant){
-        Intent intent = new Intent(ConnectionActivity.this, AccueilActivity.class);
 
-        intent.putExtra("personneConnectee", gerant);
+        Intent intent = new Intent(ConnectionActivity.this, AccueilActivity.class) ;
+        Bundle bundle = new Bundle() ;
+        bundle.putSerializable(Constant.INTENT_GERANT,gerant);
+        intent.putExtras(bundle);
 
-        //On démarre notre activité ViewArticle
         startActivity(intent);
         finish();
     }

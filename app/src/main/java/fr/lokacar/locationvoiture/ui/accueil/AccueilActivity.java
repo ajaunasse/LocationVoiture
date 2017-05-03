@@ -12,6 +12,7 @@ import fr.lokacar.locationvoiture.model.Gerant;
 import fr.lokacar.locationvoiture.ui.client.ListClientsActivity;
 import fr.lokacar.locationvoiture.ui.vehicule.ListVehiculesActivity;
 import fr.lokacar.locationvoiture.ui.vehicule.LocationActivity;
+import fr.lokacar.locationvoiture.utils.Constant;
 
 public class AccueilActivity extends AppCompatActivity {
 
@@ -19,7 +20,7 @@ public class AccueilActivity extends AppCompatActivity {
     private Button btnListVehicules;
     private Button btnGestionLocation;
     private Button btnListClients;
-
+    private Gerant gerant ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +30,12 @@ public class AccueilActivity extends AppCompatActivity {
         btnListVehicules = (Button) findViewById(R.id.btn_listVehicules);
         btnGestionLocation = (Button) findViewById(R.id.btn_gestionLocation);
         btnListClients = (Button) findViewById(R.id.btn_listClients);
-
+        gerant = (Gerant) getIntent().getExtras().get(Constant.INTENT_GERANT);
+        titleAgenceAccueil.setText(gerant.getAgence().toString2());
         //Accès à la liste des véhicules de l'agence
         btnListVehicules.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Gerant gerant = getIntent().getParcelableExtra("personneConnectee");
-
                 int idAgence = gerant.getAgence().getId();
 
                 Intent intent = new Intent(AccueilActivity.this, ListVehiculesActivity.class);

@@ -8,4 +8,5 @@ public class Constant {
     //Pointe vers l'API symfony
     public static final String URL_LOGIN = "http://10.4.140.1:8080/ApiLocationVoiture/web/api/gerant/login?email=%s&password=%s";
     public static final String URL_VEHICULES = "http://10.4.140.1:8080/ApiLocationVoiture/web/api/vehicule/vehicules/%s";
+    public static final String INTENT_GERANT =  "INTENT_GERANT";
 }

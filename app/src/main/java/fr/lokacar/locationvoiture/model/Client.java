@@ -1,10 +1,12 @@
 package fr.lokacar.locationvoiture.model;
 
+import java.io.Serializable;
+
 /**
  * Created by ddrapeau2015 on 02/05/2017.
  */
 
-public class Client extends Personne {
+public class Client extends Personne implements Serializable {
 
     private String adresse;
     private int cp;
