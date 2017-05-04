@@ -154,6 +154,10 @@ public class EditClientActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Modification des attributs du Client lors de la sauvegarde
+     * @return
+     */
     private Client editObjectClient()
     {
         client.setNom(formNom.getText().toString());
