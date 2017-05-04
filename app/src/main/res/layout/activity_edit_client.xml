@@ -12,7 +12,7 @@
         android:id="@+id/title_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ajouter_client"
+        android:text="Modification Profil"
         android:textAlignment="center"
         android:textStyle="bold"
         android:textSize="20sp"
@@ -139,8 +139,8 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_addClient"
-        android:text="@string/btn_add_client"
+        android:id="@+id/btn_saveModifsClient"
+        android:text="Sauvegarder"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,22 +16,22 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import fr.lokacar.locationvoiture.R;
+import fr.lokacar.locationvoiture.model.Client;
 import fr.lokacar.locationvoiture.utils.Constant;
 import fr.lokacar.locationvoiture.utils.FastDialog;
 import fr.lokacar.locationvoiture.utils.Network;
 
-public class AjoutClientActivity extends AppCompatActivity {
+public class EditClientActivity extends AppCompatActivity {
+
+    private Client client = new Client();
 
     private EditText formNom;
     private EditText formPrenom;
@@ -41,13 +40,27 @@ public class AjoutClientActivity extends AppCompatActivity {
     private EditText formVille;
     private EditText formTel;
     private EditText formEmail;
-    private Button btnAddClient;
-
+    private Button btnSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ajout_client);
+        setContentView(R.layout.activity_edit_client);
+
+        //Edition des champs avec les données du client que l'on souhaite modifier
+        editChamps();
+
+        btnSave = (Button) findViewById(R.id.btn_saveModifsClient);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                saveModifs();
+            }
+        });
+    }
+
+    private void editChamps()
+    {
+        client = (Client) getIntent().getExtras().get(Constant.INTENT_CLIENT);
 
         //Récupération des éléments du formulaire
         formNom = (EditText) findViewById(R.id.form_nom);
@@ -57,31 +70,28 @@ public class AjoutClientActivity extends AppCompatActivity {
         formVille = (EditText) findViewById(R.id.form_ville);
         formTel = (EditText) findViewById(R.id.form_tel);
         formEmail = (EditText) findViewById(R.id.form_email);
-        btnAddClient = (Button) findViewById(R.id.btn_addClient);
 
-        //Ajout d'un écouteur sur le bouton
-        btnAddClient.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                ajouterClient();
-            }
-        });
-
+        //Modification des valeurs des champs
+        formNom.setText(client.getNom());
+        formPrenom.setText(client.getPrenom());
+        formAdresse.setText(client.getAdresse());
+        formCp.setText(client.getCp());
+        formVille.setText(client.getVille());
+        formTel.setText(client.getTel());
+        formEmail.setText(client.getEmail());
     }
 
-    /**
-     * Fonction d'ajout d'un client -> appel de l'api symfony
-     */
-    private void ajouterClient()
+    private void saveModifs()
     {
         //Vérifie si on est bien connecté à internet
-        if(Network.isNetworkAvailable(AjoutClientActivity.this))
+        if(Network.isNetworkAvailable(EditClientActivity.this))
         {
             // Instantiate the RequestQueue.
-            RequestQueue queue = Volley.newRequestQueue(AjoutClientActivity.this);
+            RequestQueue queue = Volley.newRequestQueue(EditClientActivity.this);
 
-            String url = Constant.URL_CLIENTS;
+            String url = String.format(Constant.URL_CLIENTS + "/" + client.getId());
 
-            StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+            StringRequest postRequest = new StringRequest(Request.Method.PUT, url,
                     new Response.Listener<String>()
                     {
                         @Override
@@ -90,10 +100,14 @@ public class AjoutClientActivity extends AppCompatActivity {
                             try {
                                 JSONObject json = new JSONObject(response) ;
                                 if(json.getBoolean("ok")) {
-                                    Intent intent = new Intent(AjoutClientActivity.this, ListClientsActivity.class);
-                                    intent.putExtra(Constant.MESSAGE_OK, json.getString("message"));
 
-                                    //Retour Vue d'avant -> Liste Clients
+                                    client = editObjectClient();
+
+                                    Intent intent = new Intent(EditClientActivity.this, DetailsClientActivity.class);
+                                    intent.putExtra(Constant.MESSAGE_OK, json.getString("message"));
+                                    intent.putExtra(Constant.INTENT_CLIENT_EDIT, client);
+
+                                    //Retour Vue d'avant
                                     setResult(Activity.RESULT_OK, intent);
                                     //On termine l'activité en cours
                                     finish();
@@ -134,9 +148,22 @@ public class AjoutClientActivity extends AppCompatActivity {
             queue.add(postRequest);
 
         }else {
-            FastDialog.showDialog(AjoutClientActivity.this,
+            FastDialog.showDialog(EditClientActivity.this,
                     FastDialog.SIMPLE_DIALOG,
                     "Vous devez être connecté!");
         }
+    }
+
+    private Client editObjectClient()
+    {
+        client.setNom(formNom.getText().toString());
+        client.setPrenom(formPrenom.getText().toString());
+        client.setAdresse(formAdresse.getText().toString());
+        client.setCp(formCp.getText().toString());
+        client.setVille(formVille.getText().toString());
+        client.setEmail(formEmail.getText().toString());
+        client.setTel(formTel.getText().toString());
+
+        return client;
     }
 }

@@ -15,6 +15,11 @@ public class Client extends Personne implements Serializable {
 
     private String email;
 
+    public Client()
+    {
+
+    }
+
     public Client(int idPersonne, String nom, String prenom, String adresse, String codepostal, String ville, String telephone, String email) {
         super(idPersonne, nom, prenom);
         this.adresse = adresse;

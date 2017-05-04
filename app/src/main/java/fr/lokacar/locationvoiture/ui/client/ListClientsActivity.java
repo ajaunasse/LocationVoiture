@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -31,13 +32,23 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
 
     private ListView listClients;
     private FloatingActionButton addClient;
-
+    private ClientAdapter adapter;
     private ArrayList<Client> clients = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_clients);
+
+        listClients = (ListView) findViewById(R.id.list_clients);
+
+        adapter = new ClientAdapter(  //ADAPTER
+                ListClientsActivity.this,
+                R.layout.item_client,  //LAYOUT adapté
+                clients);
+
+        //On ajoute les clients à la liste de notre vue
+        listClients.setAdapter(adapter);
 
         //Génération de la liste des clients
         generateListClients();
@@ -49,6 +60,9 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
                 ajouterClient();
             }
         });
+
+        //Ecouteur sur les éléments de la liste
+        listClients.setOnItemClickListener(ListClientsActivity.this);
     }
 
     /**
@@ -57,9 +71,6 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
      */
     private void generateListClients()
     {
-        listClients = (ListView) findViewById(R.id.list_clients);
-
-
         //Vérifie si on est bien connecté à internet
         if(Network.isNetworkAvailable(ListClientsActivity.this))
         {
@@ -80,21 +91,14 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
                             Type listType = new TypeToken<ArrayList<Client>>(){}.getType();
 
                             try {
-                                clients = new Gson().fromJson(response, listType);
+                                ArrayList<Client> newClients = gson.fromJson(response, listType) ;
+                                clients.clear();
+                                clients.addAll(newClients) ;
+                                adapter.notifyDataSetChanged();
+
                             } catch (JsonSyntaxException jse) {
                                 jse.printStackTrace();
                             }
-
-
-                            //On ajoute les clients à la liste de notre vue
-                            listClients.setAdapter(new ClientAdapter(  //ADAPTER
-                                    ListClientsActivity.this,
-                                    R.layout.item_client,  //LAYOUT adapté
-                                    clients)
-                            );
-
-                            //Ecouteur sur les éléments de la liste
-                            //listClients.setOnItemClickListener(ListClientsActivity.this);
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -120,13 +124,31 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
     private void ajouterClient()
     {
         Intent intent = new Intent(ListClientsActivity.this, AjoutClientActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
     {
+        Intent intent = new Intent(ListClientsActivity.this, DetailsClientActivity.class);
 
+        //Envoyer un obbjet
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constant.INTENT_CLIENT, clients.get(position));
+        intent.putExtras(bundle);
+
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        String messageOK = data.getStringExtra(Constant.MESSAGE_OK);
+
+        Toast.makeText(this, messageOK, Toast.LENGTH_SHORT).show();
+
+        generateListClients();
     }
 }

@@ -28,7 +28,10 @@
         <activity android:name=".ui.client.ListClientsActivity" />
         <activity android:name=".ui.client.AjoutClientActivity" />
         <activity android:name=".ui.vehicule.EditVehiculeActivity" />
-        <activity android:name=".ui.LocationActivity"></activity>
+        <activity
+            android:name=".ui.client.DetailsClientActivity"
+            android:parentActivityName=".ui.client.ListClientsActivity" />
+        <activity android:name=".ui.client.EditClientActivity"></activity>
     </application>
 
 </manifest>

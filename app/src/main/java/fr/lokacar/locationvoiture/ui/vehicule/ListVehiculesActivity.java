@@ -109,7 +109,7 @@ public class ListVehiculesActivity extends AppCompatActivity implements AdapterV
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         Intent intent = new Intent(ListVehiculesActivity.this, DetailVehiculeActivity.class);
 
-        //Envoyer un obbjet
+        //Envoyer un objet
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constant.INTENT_VEHICULE, vehicules.get(position));
         intent.putExtras(bundle);

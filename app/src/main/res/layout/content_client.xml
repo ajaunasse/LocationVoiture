@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="fr.lokacar.locationvoiture.ui.client.DetailsClientActivity"
+    tools:showIn="@layout/activity_details_client">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="15dp"
+        android:gravity="center">
+
+        <TextView
+            android:text="@string/adresse_client"
+            android:id="@+id/adresse_client"
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="@string/code_postal_client"
+            android:id="@+id/cp_ville_client"
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="@string/telephone_client"
+            android:id="@+id/tel_client"
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="@string/email_client"
+            android:id="@+id/email_client"
+            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

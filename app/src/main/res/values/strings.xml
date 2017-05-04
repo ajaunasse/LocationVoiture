@@ -103,4 +103,13 @@
     <string name="cancel">Annuler</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="selectDate">Séléctionnez une date</string>
+    <string name="ajouter_client">Ajouter client</string>
+    <string name="nom_client">Nom :</string>
+    <string name="prenom_client">Prenom :</string>
+    <string name="adresse_client">Adresse :</string>
+    <string name="code_postal_client">Code Postal :</string>
+    <string name="ville_client">Ville :</string>
+    <string name="telephone_client">Téléphone :</string>
+    <string name="email_client">Email :</string>
+    <string name="btn_add_client">Ajouter</string>
 </resources>

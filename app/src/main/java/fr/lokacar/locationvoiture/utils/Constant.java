@@ -16,4 +16,7 @@ public class Constant {
     public static final String INTENT_GERANT =  "INTENT_GERANT";
     public static final String INTENT_VEHICULE = "INTENT_VEHICULE";
     public static final String ID_AGENCE =  "ID_AGENCE";
+    public static final String MESSAGE_OK = "MESSAGE_OK";
+    public static final String INTENT_CLIENT = "INTENT_CLIENT";
+    public static final String INTENT_CLIENT_EDIT = "INTENT_CLIENT_EDIT";
 }
