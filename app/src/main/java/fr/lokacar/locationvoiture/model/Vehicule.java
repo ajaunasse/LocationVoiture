@@ -75,6 +75,9 @@ public class Vehicule implements Serializable{
     public float getPrix() {
         return prix;
     }
+    public String getPrixString() {
+        return prix + " €" ;
+    }
 
     public void setPrix(float prix) {
         this.prix = prix;
