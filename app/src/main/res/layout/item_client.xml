@@ -28,6 +28,8 @@
         android:text="Ville Client"
         android:layout_marginRight="5dp"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+
+        />
 
 </RelativeLayout>
