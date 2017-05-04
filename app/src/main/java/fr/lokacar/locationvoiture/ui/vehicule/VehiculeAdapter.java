@@ -1,6 +1,7 @@
 package fr.lokacar.locationvoiture.ui.vehicule;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,10 +50,10 @@ public class VehiculeAdapter extends ArrayAdapter<Vehicule> {
 
             viewHolder = new ViewHolder();
             viewHolder.textViewTitle = (TextView)convertView.findViewById(R.id.textViewTitle);
-            viewHolder.textViewLibelle = (TextView)convertView.findViewById(R.id.textViewLibelle);
-            viewHolder.textViewPrix = (TextView)convertView.findViewById(R.id.textViewPrix);
-            viewHolder.textViewLoue = (TextView)convertView.findViewById(R.id.textViewLoue);
-            viewHolder.imageViewVehicule = (ImageView)convertView.findViewById(R.id.image_vehicule);
+            viewHolder.textViewLibelle = (TextView)convertView.findViewById(R.id.item_description);
+            viewHolder.textViewPrix = (TextView)convertView.findViewById(R.id.item_price);
+            viewHolder.imgIconLoue = (ImageView) convertView.findViewById(R.id.item_status);
+            viewHolder.imageViewVehicule = (ImageView)convertView.findViewById(R.id.item_icon);
 
             convertView.setTag(viewHolder); //Enregistre les views
 
@@ -68,17 +70,16 @@ public class VehiculeAdapter extends ArrayAdapter<Vehicule> {
         viewHolder.textViewPrix.setText(String.valueOf(item.getPrix()));
 
         if(item.isEstLoue()){
-            viewHolder.textViewLoue.setText("LOUE");
-        }else{
-            viewHolder.textViewLoue.setText("A LOUER");
+            viewHolder.imgIconLoue.setImageResource(R.drawable.ic_check_on_24dp);
         }
+
         Picasso.with(getContext()).load(item.getImage()).transform(new CircleTransform()).into(viewHolder.imageViewVehicule);
 
         return convertView;
     }
 
     class ViewHolder{
-        TextView textViewTitle, textViewLibelle, textViewPrix, textViewLoue;
-        ImageView imageViewVehicule;
+        TextView textViewTitle, textViewLibelle, textViewPrix;
+        ImageView imgIconLoue, imageViewVehicule;
     }
 }
