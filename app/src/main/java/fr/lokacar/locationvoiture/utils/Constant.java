@@ -13,4 +13,5 @@ public class Constant {
     //Clés utilisés dans la transmission des données d'une activité à l'autre
     public static final String INTENT_GERANT =  "INTENT_GERANT";
     public static final String INTENT_VEHICULE = "INTENT_VEHICULE";
+    public static final String MESSAGE_OK = "MESSAGE_OK";
 }

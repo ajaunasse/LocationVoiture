@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -120,7 +121,7 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
     private void ajouterClient()
     {
         Intent intent = new Intent(ListClientsActivity.this, AjoutClientActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
 
@@ -128,5 +129,14 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
     {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        String messageOK = data.getStringExtra(Constant.MESSAGE_OK);
+
+        Toast.makeText(this, messageOK, Toast.LENGTH_SHORT).show();
     }
 }

@@ -30,7 +30,7 @@
         <activity android:name=".ui.client.ListClientsActivity" />
 
         <activity android:name=".ui.client.AjoutClientActivity"></activity>
-        
+
         <activity android:name=".ui.vehicule.EditVehiculeActivity"></activity>
     </application>
 
