@@ -5,7 +5,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -61,6 +60,9 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
                 ajouterClient();
             }
         });
+
+        //Ecouteur sur les éléments de la liste
+        listClients.setOnItemClickListener(ListClientsActivity.this);
     }
 
     /**
@@ -97,9 +99,6 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
                             } catch (JsonSyntaxException jse) {
                                 jse.printStackTrace();
                             }
-
-                            //Ecouteur sur les éléments de la liste
-                            //listClients.setOnItemClickListener(ListClientsActivity.this);
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -130,9 +129,16 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
 
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
     {
+        Intent intent = new Intent(ListClientsActivity.this, DetailsClientActivity.class);
 
+        //Envoyer un obbjet
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constant.INTENT_CLIENT, clients.get(position));
+        intent.putExtras(bundle);
+
+        startActivity(intent);
     }
 
     @Override

@@ -28,10 +28,12 @@
             android:parentActivityName=".ui.vehicule.ListVehiculesActivity" />
         <activity android:name=".ui.vehicule.LocationActivity" />
         <activity android:name=".ui.client.ListClientsActivity" />
-
-        <activity android:name=".ui.client.AjoutClientActivity"></activity>
-
-        <activity android:name=".ui.vehicule.EditVehiculeActivity"></activity>
+        <activity android:name=".ui.client.AjoutClientActivity" />
+        <activity android:name=".ui.vehicule.EditVehiculeActivity" />
+        <activity
+            android:name=".ui.client.DetailsClientActivity"
+            android:parentActivityName=".ui.client.ListClientsActivity" />
+        <activity android:name=".ui.client.EditClientActivity"></activity>
     </application>
 
 </manifest>
