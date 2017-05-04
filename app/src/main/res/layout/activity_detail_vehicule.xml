@@ -78,7 +78,9 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_directions_car_24dp" />
+        app:srcCompat="@drawable/ic_directions_car_24dp"
+        android:onClick="createLocation"
+        />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_footer"

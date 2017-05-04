@@ -18,6 +18,8 @@ import org.w3c.dom.Text;
 
 import fr.lokacar.locationvoiture.R;
 import fr.lokacar.locationvoiture.model.Vehicule;
+import fr.lokacar.locationvoiture.ui.client.AjoutClientActivity;
+import fr.lokacar.locationvoiture.ui.client.ListClientsActivity;
 import fr.lokacar.locationvoiture.utils.Constant;
 
 public class DetailVehiculeActivity extends AppCompatActivity {
@@ -73,5 +75,17 @@ public class DetailVehiculeActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void createLocation(View view) {
+        Intent intent = new Intent(DetailVehiculeActivity.this, LocationActivity.class);
+
+        //Envoyer un obbjet
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constant.INTENT_VEHICULE, vehicule);
+        intent.putExtras(bundle);
+
+        //On démarre notre activité DetailsVehiculeActivity
+        startActivity(intent);
     }
 }

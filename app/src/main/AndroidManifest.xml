@@ -26,10 +26,9 @@
         <activity android:name=".ui.vehicule.DetailVehiculeActivity" />
         <activity android:name=".ui.vehicule.LocationActivity" />
         <activity android:name=".ui.client.ListClientsActivity" />
-
-        <activity android:name=".ui.client.AjoutClientActivity"></activity>
-        
-        <activity android:name=".ui.vehicule.EditVehiculeActivity"></activity>
+        <activity android:name=".ui.client.AjoutClientActivity" />
+        <activity android:name=".ui.vehicule.EditVehiculeActivity" />
+        <activity android:name=".ui.LocationActivity"></activity>
     </application>
 
 </manifest>

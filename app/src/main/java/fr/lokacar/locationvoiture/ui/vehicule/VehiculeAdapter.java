@@ -67,7 +67,7 @@ public class VehiculeAdapter extends ArrayAdapter<Vehicule> {
         //On modifie la valeur des champs dans notre vue
         viewHolder.textViewTitle.setText(item.getMarque());
         viewHolder.textViewLibelle.setText(item.getLibelle());
-        viewHolder.textViewPrix.setText(String.valueOf(item.getPrix()));
+        viewHolder.textViewPrix.setText(item.getPrixString());
 
         if(item.isEstLoue()){
             viewHolder.imgIconLoue.setImageResource(R.drawable.ic_check_on_24dp);

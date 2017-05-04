@@ -1,9 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="fr.lokacar.locationvoiture.ui.vehicule.LocationActivity">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="fr.lokacar.locationvoiture.ui.vehicule.LocationActivity"
+    android:orientation="vertical"
+    android:paddingLeft="15sp"
+    android:paddingRight="15sp"
+    android:paddingTop="15sp"
+    android:paddingBottom="15sp"
+    >
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-</android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:text="Voiture : "
+                    android:layout_width="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/editTextVoiture"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Client : "
+                    android:layout_width="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content" />
+                <AutoCompleteTextView
+                    android:id="@+id/editTextClient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Date début : "
+                    android:layout_width="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/editTextDateDebut"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="pickadateDebut"
+                    android:focusable="false"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Date fin : "
+                    android:layout_width="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/editTextDateFin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="pickadateFin"
+                    android:focusable="false"
+                    />
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btn_addClient"
+                android:text="Créer contrat location"
+                android:layout_margin="10dp"
+                android:textColor="@color/colorGreyLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary"
+                android:onClick="addLocation"
+               />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+
