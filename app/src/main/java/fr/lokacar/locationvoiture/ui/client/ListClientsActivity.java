@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -32,13 +33,23 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
 
     private ListView listClients;
     private FloatingActionButton addClient;
-
+    private ClientAdapter adapter;
     private ArrayList<Client> clients = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_clients);
+
+        listClients = (ListView) findViewById(R.id.list_clients);
+
+        adapter = new ClientAdapter(  //ADAPTER
+                ListClientsActivity.this,
+                R.layout.item_client,  //LAYOUT adapté
+                clients);
+
+        //On ajoute les clients à la liste de notre vue
+        listClients.setAdapter(adapter);
 
         //Génération de la liste des clients
         generateListClients();
@@ -58,9 +69,6 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
      */
     private void generateListClients()
     {
-        listClients = (ListView) findViewById(R.id.list_clients);
-
-
         //Vérifie si on est bien connecté à internet
         if(Network.isNetworkAvailable(ListClientsActivity.this))
         {
@@ -81,18 +89,14 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
                             Type listType = new TypeToken<ArrayList<Client>>(){}.getType();
 
                             try {
-                                clients = new Gson().fromJson(response, listType);
+                                ArrayList<Client> newClients = gson.fromJson(response, listType) ;
+                                clients.clear();
+                                clients.addAll(newClients) ;
+                                adapter.notifyDataSetChanged();
+
                             } catch (JsonSyntaxException jse) {
                                 jse.printStackTrace();
                             }
-
-
-                            //On ajoute les clients à la liste de notre vue
-                            listClients.setAdapter(new ClientAdapter(  //ADAPTER
-                                    ListClientsActivity.this,
-                                    R.layout.item_client,  //LAYOUT adapté
-                                    clients)
-                            );
 
                             //Ecouteur sur les éléments de la liste
                             //listClients.setOnItemClickListener(ListClientsActivity.this);
@@ -138,5 +142,7 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
         String messageOK = data.getStringExtra(Constant.MESSAGE_OK);
 
         Toast.makeText(this, messageOK, Toast.LENGTH_SHORT).show();
+
+        generateListClients();
     }
 }
