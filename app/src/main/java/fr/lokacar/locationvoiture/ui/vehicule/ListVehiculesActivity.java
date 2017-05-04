@@ -36,14 +36,14 @@ import fr.lokacar.locationvoiture.utils.Network;
 public class ListVehiculesActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private List<Vehicule> vehicules = new ArrayList<>();
-
     private ListView listVehicules;
+    private int idAgence ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_vehicules);
-
+        idAgence = getIntent().getIntExtra(Constant.ID_AGENCE, 1);
         generateList();
     }
 
@@ -51,7 +51,7 @@ public class ListVehiculesActivity extends AppCompatActivity implements AdapterV
      * Fonction de genration de la liste des vehicules avec l'appel à l'API Symfony
      */
     private void generateList() {
-        int idAgence = getIntent().getIntExtra("idAgence", 1);
+
 
         listVehicules = (ListView) findViewById(R.id.list_vehicules);
 
@@ -113,6 +113,7 @@ public class ListVehiculesActivity extends AppCompatActivity implements AdapterV
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constant.INTENT_VEHICULE, vehicules.get(position));
         intent.putExtras(bundle);
+        intent.putExtra(Constant.ID_AGENCE, idAgence);
 
         //On démarre notre activité DetailsVehiculeActivity
         startActivity(intent);

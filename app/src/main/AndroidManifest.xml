@@ -23,9 +23,7 @@
         <activity android:name=".ui.connexion.ConnectionActivity" />
         <activity android:name=".ui.accueil.AccueilActivity" />
         <activity android:name=".ui.vehicule.ListVehiculesActivity" />
-        <activity
-            android:name=".ui.vehicule.DetailVehiculeActivity"
-            android:parentActivityName=".ui.vehicule.ListVehiculesActivity" />
+        <activity android:name=".ui.vehicule.DetailVehiculeActivity" />
         <activity android:name=".ui.vehicule.LocationActivity" />
         <activity android:name=".ui.client.ListClientsActivity" />
 

@@ -82,13 +82,14 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_footer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
 
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/ic_edit_24dp"
         app:layout_anchor="@id/include"
         app:layout_anchorGravity="bottom|end"
+        android:onClick="editVehicule"
         />
 
 </android.support.design.widget.CoordinatorLayout>
