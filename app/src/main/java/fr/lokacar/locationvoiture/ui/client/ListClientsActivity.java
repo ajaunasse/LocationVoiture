@@ -1,5 +1,7 @@
 package fr.lokacar.locationvoiture.ui.client;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +30,7 @@ import fr.lokacar.locationvoiture.utils.Network;
 public class ListClientsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ListView listClients;
+    private FloatingActionButton addClient;
 
     private ArrayList<Client> clients = new ArrayList<>();
 
@@ -36,7 +39,16 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_clients);
 
+        //Génération de la liste des clients
         generateListClients();
+
+        //Ecouteur sur l'icone pour ajouter un client
+        addClient = (FloatingActionButton) findViewById(R.id.add_client);
+        addClient.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ajouterClient();
+            }
+        });
     }
 
     /**
@@ -74,7 +86,7 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
                             }
 
 
-                            //On ajoute les véhicules à la liste de notre vue
+                            //On ajoute les clients à la liste de notre vue
                             listClients.setAdapter(new ClientAdapter(  //ADAPTER
                                     ListClientsActivity.this,
                                     R.layout.item_client,  //LAYOUT adapté
@@ -102,8 +114,19 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
         }
     }
 
+    /**
+     * Fonction d'ajout d'un client -> Appel de notre activité AjoutClientActivity
+     */
+    private void ajouterClient()
+    {
+        Intent intent = new Intent(ListClientsActivity.this, AjoutClientActivity.class);
+        startActivity(intent);
+    }
+
+
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+    {
 
     }
 }
