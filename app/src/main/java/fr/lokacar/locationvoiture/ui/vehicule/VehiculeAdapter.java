@@ -49,7 +49,7 @@ public class VehiculeAdapter extends ArrayAdapter<Vehicule> {
             convertView = inflater.inflate(resId, null);
 
             viewHolder = new ViewHolder();
-            viewHolder.textViewTitle = (TextView)convertView.findViewById(R.id.textViewTitle);
+            viewHolder.textViewTitle = (TextView)convertView.findViewById(R.id.item_title);
             viewHolder.textViewLibelle = (TextView)convertView.findViewById(R.id.item_description);
             viewHolder.textViewPrix = (TextView)convertView.findViewById(R.id.item_price);
             viewHolder.imgIconLoue = (ImageView) convertView.findViewById(R.id.item_status);
