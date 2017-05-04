@@ -107,7 +107,7 @@ public class ListVehiculesActivity extends AppCompatActivity implements AdapterV
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-        Intent intent = new Intent(ListVehiculesActivity.this, DetailsVehiculeActivity.class);
+        Intent intent = new Intent(ListVehiculesActivity.this, DetailVehiculeActivity.class);
 
         //Envoyer un obbjet
         Bundle bundle = new Bundle();

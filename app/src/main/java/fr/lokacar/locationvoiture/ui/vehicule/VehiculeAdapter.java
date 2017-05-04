@@ -17,6 +17,7 @@ import java.util.List;
 
 import fr.lokacar.locationvoiture.R;
 import fr.lokacar.locationvoiture.model.Vehicule;
+import fr.lokacar.locationvoiture.utils.CircleTransform;
 
 /**
  * Created by ddrapeau2015 on 03/05/2017.
@@ -71,8 +72,7 @@ public class VehiculeAdapter extends ArrayAdapter<Vehicule> {
         }else{
             viewHolder.textViewLoue.setText("A LOUER");
         }
-
-        Picasso.with(getContext()).load(item.getImage()).into(viewHolder.imageViewVehicule);
+        Picasso.with(getContext()).load(item.getImage()).transform(new CircleTransform()).into(viewHolder.imageViewVehicule);
 
         return convertView;
     }

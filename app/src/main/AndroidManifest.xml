@@ -25,7 +25,6 @@
         <activity android:name=".ui.vehicule.ListVehiculesActivity" />
         <activity android:name=".ui.vehicule.LocationActivity" />
         <activity android:name=".ui.client.ListClientsActivity" />
-        <activity android:name=".ui.vehicule.DetailsVehiculeActivity"></activity>
     </application>
 
 </manifest>
