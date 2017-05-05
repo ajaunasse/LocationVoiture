@@ -101,6 +101,10 @@ public class DetailsClientActivity extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    /**
+     * Suppression du compte Client
+     * @param client
+     */
     private void deleteClient(Client client)
     {
         //Vérifie si on est bien connecté à internet
@@ -123,7 +127,6 @@ public class DetailsClientActivity extends AppCompatActivity {
                                     Intent intent = new Intent(DetailsClientActivity.this, ListClientsActivity.class);
                                     intent.putExtra(Constant.MESSAGE_OK, json.getString("message"));
 
-                                    //Retour Vue d'avant -> Liste Clients
                                     setResult(Activity.RESULT_OK, intent);
                                     //On termine l'activité en cours
                                     finish();
@@ -160,11 +163,12 @@ public class DetailsClientActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        String messageOK = data.getStringExtra(Constant.MESSAGE_OK);
+        if(null != data){
+            String messageOK = data.getStringExtra(Constant.MESSAGE_OK);
+            Toast.makeText(this, messageOK, Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(this, messageOK, Toast.LENGTH_SHORT).show();
-
-        client = (Client) data.getExtras().get(Constant.INTENT_CLIENT_EDIT);
+            client = (Client) data.getExtras().get(Constant.INTENT_CLIENT_EDIT);
+        }
         loadingData();
     }
 }

@@ -138,17 +138,18 @@ public class ListClientsActivity extends AppCompatActivity implements AdapterVie
         bundle.putSerializable(Constant.INTENT_CLIENT, clients.get(position));
         intent.putExtras(bundle);
 
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        String messageOK = data.getStringExtra(Constant.MESSAGE_OK);
+        if(null != data){
+            String messageOK = data.getStringExtra(Constant.MESSAGE_OK);
 
-        Toast.makeText(this, messageOK, Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(this, messageOK, Toast.LENGTH_SHORT).show();
+        }
         generateListClients();
     }
 }
