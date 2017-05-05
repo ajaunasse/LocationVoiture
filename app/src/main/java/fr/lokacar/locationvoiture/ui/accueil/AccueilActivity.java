@@ -7,11 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import fr.lokacar.locationvoiture.ui.location.ListLocationsActivity;
 import fr.lokacar.locationvoiture.R;
 import fr.lokacar.locationvoiture.model.Gerant;
 import fr.lokacar.locationvoiture.ui.client.ListClientsActivity;
 import fr.lokacar.locationvoiture.ui.vehicule.ListVehiculesActivity;
-import fr.lokacar.locationvoiture.ui.vehicule.LocationActivity;
 import fr.lokacar.locationvoiture.utils.Constant;
 
 public class AccueilActivity extends AppCompatActivity {
@@ -32,12 +32,12 @@ public class AccueilActivity extends AppCompatActivity {
         btnListClients = (Button) findViewById(R.id.btn_listClients);
         gerant = (Gerant) getIntent().getExtras().get(Constant.INTENT_GERANT);
         titleAgenceAccueil.setText(gerant.getAgence().toString2());
+
         //Accès à la liste des véhicules de l'agence
         btnListVehicules.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int idAgence = gerant.getAgence().getId();
-
                 Intent intent = new Intent(AccueilActivity.this, ListVehiculesActivity.class);
                 intent.putExtra("idAgence", idAgence);
 
@@ -49,7 +49,10 @@ public class AccueilActivity extends AppCompatActivity {
         btnGestionLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AccueilActivity.this, LocationActivity.class);
+                int idAgence = gerant.getAgence().getId();
+                Intent intent = new Intent(AccueilActivity.this, ListLocationsActivity.class);
+                intent.putExtra("idAgence", idAgence);
+
                 startActivity(intent);
             }
         });

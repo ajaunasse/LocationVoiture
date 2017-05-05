@@ -11,6 +11,7 @@ public class Constant {
     public static final String URL_CRUD_VEHICULE =  "http://10.4.140.1:8080/ApiLocationVoiture/web/api/vehicule/vehicules/%s" ;
     public static final String URL_CLIENTS = "http://10.4.140.1:8080/ApiLocationVoiture/web/api/client/clients";
     public static final String ULR_ADD_LOCATION = "http://10.4.140.1:8080/ApiLocationVoiture/web/api/location/locations";
+    public static final String URL_LOCATIONS = "http://10.4.140.1:8080/ApiLocationVoiture/web/api/location/agence/locations/%s";
 
     //Clés utilisés dans la transmission des données d'une activité à l'autre
     public static final String INTENT_GERANT =  "INTENT_GERANT";

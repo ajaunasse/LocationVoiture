@@ -5,30 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fr.lokacar.locationvoiture.ui.client.ListClientsActivity">
+    tools:context="fr.lokacar.locationvoiture.ui.location.ListLocationsActivity">
 
     <TextView
         android:id="@+id/title_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Liste des clients"
+        android:text="Locations"
         android:textAlignment="center"
         android:textStyle="bold"
         android:textSize="20sp"
         android:layout_margin="20dp"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/add_client"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:src="@drawable/ic_add_white_24dp"
-        app:layout_anchor="@id/include"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"/>
-
     <ListView
-        android:id="@+id/list_clients"
+        android:id="@+id/list_locations"
         android:layout_below="@+id/title_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>
