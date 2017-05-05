@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -196,10 +197,12 @@ public class LocationActivity extends AppCompatActivity {
                             try {
                                 JSONObject json = new JSONObject(response) ;
                                 if(json.getBoolean("ok")) {
-                                    Intent intent = new Intent(LocationActivity.this, ListVehiculesActivity.class);
-                                    intent.putExtra("ok", json.getString("message"));
+                                    Intent intent = new Intent(LocationActivity.this, DetailVehiculeActivity.class);
+                                    intent.putExtra(Constant.MESSAGE_OK, json.getString("message"));
                                     setResult(Activity.RESULT_OK, intent);
                                     finish();
+                                } else {
+                                    Toast.makeText(LocationActivity.this, "une erreur est survenue", Toast.LENGTH_SHORT).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

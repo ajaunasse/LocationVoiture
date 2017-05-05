@@ -85,6 +85,6 @@ public class Agence implements Serializable {
     }
 
     public String toString2() {
-        return nom + " - " + adresse ;
+        return "Agence : "+nom + "\n Adresse : " + adresse +"\n CA :" + cA ;
     }
 }

@@ -6,7 +6,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fr.lokacar.locationvoiture.ui.connexion.ConnectionActivity">
+    tools:context="fr.lokacar.locationvoiture.ui.connexion.ConnectionActivity"
+    android:gravity="center"
+    android:padding="15dp"
+    >
 
     <LinearLayout
         android:id="@+id/blocLogin"
@@ -24,7 +27,8 @@
             android:id="@+id/editText_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="louie54@yahoo.com"/>
+            android:text="louie54@yahoo.com"
+            />
 
     </LinearLayout>
 
@@ -52,6 +56,9 @@
         android:id="@+id/btn_connexion"
         android:text="@string/btn_se_connecter"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorWhite"
+        />
 
 </LinearLayout>

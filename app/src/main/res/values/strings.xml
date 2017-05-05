@@ -112,4 +112,5 @@
     <string name="telephone_client">Téléphone :</string>
     <string name="email_client">Email :</string>
     <string name="btn_add_client">Ajouter</string>
+    <string name="name_accueil">Lokacar</string>
 </resources>

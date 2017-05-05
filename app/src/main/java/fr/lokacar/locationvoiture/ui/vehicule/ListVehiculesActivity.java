@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,6 +21,7 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +40,20 @@ public class ListVehiculesActivity extends AppCompatActivity implements AdapterV
     private List<Vehicule> vehicules = new ArrayList<>();
     private ListView listVehicules;
     private int idAgence ;
+    private VehiculeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_vehicules);
         idAgence = getIntent().getIntExtra(Constant.ID_AGENCE, 1);
+        listVehicules = (ListView) findViewById(R.id.list_vehicules);
+        //On ajoute les véhicules à la liste de notre vue
+        adapter = new VehiculeAdapter(ListVehiculesActivity.this,
+                R.layout.item_vehicule,
+                vehicules);
+        listVehicules.setAdapter(adapter);
+        listVehicules.setOnItemClickListener(ListVehiculesActivity.this);
         generateList();
     }
 
@@ -51,9 +61,6 @@ public class ListVehiculesActivity extends AppCompatActivity implements AdapterV
      * Fonction de genration de la liste des vehicules avec l'appel à l'API Symfony
      */
     private void generateList() {
-
-
-        listVehicules = (ListView) findViewById(R.id.list_vehicules);
 
         //Vérifie si on est bien connecté à internet
         if(Network.isNetworkAvailable(ListVehiculesActivity.this))
@@ -73,18 +80,11 @@ public class ListVehiculesActivity extends AppCompatActivity implements AdapterV
                             Gson gson = new Gson();
 
                             Type listType = new TypeToken<ArrayList<Vehicule>>(){}.getType();
-
-                            vehicules = new Gson().fromJson(response, listType);
-
-                            //On ajoute les véhicules à la liste de notre vue
-                            listVehicules.setAdapter(new VehiculeAdapter(  //ADAPTER
-                                    ListVehiculesActivity.this,
-                                    R.layout.item_vehicule,  //LAYOUT adapté
-                                    vehicules)
-                            );
-
+                            vehicules.clear();
+                            vehicules.addAll((ArrayList<Vehicule>)gson.fromJson(response, listType));
+                            adapter.notifyDataSetChanged();
                             //Ecouteur sur les éléments de la liste
-                            listVehicules.setOnItemClickListener(ListVehiculesActivity.this);
+
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -116,6 +116,15 @@ public class ListVehiculesActivity extends AppCompatActivity implements AdapterV
         intent.putExtra(Constant.ID_AGENCE, idAgence);
 
         //On démarre notre activité DetailsVehiculeActivity
-        startActivity(intent);
+        startActivityForResult(intent,1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(data != null) {
+            String message =  data.getExtras().getString(Constant.MESSAGE_OK) ;
+            Toast.makeText(ListVehiculesActivity.this, message, Toast.LENGTH_SHORT).show();
+        }
+        generateList();
     }
 }
