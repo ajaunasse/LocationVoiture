@@ -113,4 +113,8 @@
     <string name="email_client">Email :</string>
     <string name="btn_add_client">Ajouter</string>
     <string name="name_accueil">Lokacar</string>
+    <string name="nomAgence"><b>Agence :</b> %s</string>
+    <string name="adresseAgence"><b>Adresse :</b> %s</string>
+    <string name="caAgence"><b>CA :</b> %s</string>
+    <string name="idAgece">idAgence</string>
 </resources>

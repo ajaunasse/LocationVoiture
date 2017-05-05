@@ -67,6 +67,9 @@ public class Agence implements Serializable {
     public float getcA() {
         return cA;
     }
+    public String getStringCa() {
+        return cA + "€" ;
+    }
 
     public void setcA(int cA) {
         this.cA = cA;

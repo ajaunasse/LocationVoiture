@@ -9,12 +9,29 @@
     tools:context="fr.lokacar.locationvoiture.ui.accueil.AccueilActivity">
 
     <TextView
-        android:id="@+id/title_agence_accueil"
+    android:id="@+id/textViewNomAgence"
+    android:text="AGENCE"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:gravity="center"
+    android:textColor="@color/colorBlack"/>
+    <TextView
+        android:id="@+id/textViewAdresseAgence"
         android:text="AGENCE LALALALA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textColor="@color/colorBlack"/>
+    <TextView
+        android:id="@+id/textViewCaAgence"
+        android:text="AGENCE LALALALA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textColor="@color/colorBlack"/>
 
     <LinearLayout
         android:id="@+id/bloc_button"
