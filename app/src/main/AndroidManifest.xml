@@ -34,7 +34,8 @@
             android:name=".ui.client.DetailsClientActivity"
             android:parentActivityName=".ui.client.ListClientsActivity" />
         <activity android:name=".ui.client.EditClientActivity" />
-        <activity android:name=".ui.location.ListLocationsActivity"></activity>
+        <activity android:name=".ui.location.ListLocationsActivity" />
+        <activity android:name=".ui.vehicule.AjoutVehiculeActivity"></activity>
     </application>
 
 </manifest>

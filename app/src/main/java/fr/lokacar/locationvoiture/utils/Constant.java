@@ -9,6 +9,7 @@ public class Constant {
     public static final String URL_LOGIN = "http://10.4.140.1:8080/ApiLocationVoiture/web/api/gerant/login?email=%s&password=%s";
     public static final String URL_VEHICULES = "http://10.4.140.1:8080/ApiLocationVoiture/web/api/vehicule/agence/vehicules/%s";
     public static final String URL_CRUD_VEHICULE =  "http://10.4.140.1:8080/ApiLocationVoiture/web/api/vehicule/vehicules/%s" ;
+    public static final String URL_ADD_VEHICULE = "http://10.4.140.1:8080/ApiLocationVoiture/web/api/vehicule/vehicules";
     public static final String URL_CLIENTS = "http://10.4.140.1:8080/ApiLocationVoiture/web/api/client/clients";
     public static final String ULR_ADD_LOCATION = "http://10.4.140.1:8080/ApiLocationVoiture/web/api/location/locations";
     public static final String URL_LOCATIONS = "http://10.4.140.1:8080/ApiLocationVoiture/web/api/location/agence/locations/%s";

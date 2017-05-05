@@ -1,6 +1,7 @@
 package fr.lokacar.locationvoiture.ui.vehicule;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +42,7 @@ public class ListVehiculesActivity extends AppCompatActivity implements AdapterV
     private ListView listVehicules;
     private int idAgence ;
     private VehiculeAdapter adapter;
+    private FloatingActionButton addVehicule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,16 @@ public class ListVehiculesActivity extends AppCompatActivity implements AdapterV
                 vehicules);
         listVehicules.setAdapter(adapter);
         listVehicules.setOnItemClickListener(ListVehiculesActivity.this);
+
         generateList();
+
+        addVehicule = (FloatingActionButton) findViewById(R.id.add_vehicule);
+        addVehicule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ajoutVehicule();
+            }
+        });
     }
 
     /**
@@ -116,6 +127,14 @@ public class ListVehiculesActivity extends AppCompatActivity implements AdapterV
         intent.putExtra(Constant.ID_AGENCE, idAgence);
 
         //On démarre notre activité DetailsVehiculeActivity
+        startActivityForResult(intent,1);
+    }
+
+    private void ajoutVehicule()
+    {
+        Intent intent = new Intent(ListVehiculesActivity.this, AjoutVehiculeActivity.class);
+        intent.putExtra(Constant.ID_AGENCE, idAgence);
+
         startActivityForResult(intent,1);
     }
 
