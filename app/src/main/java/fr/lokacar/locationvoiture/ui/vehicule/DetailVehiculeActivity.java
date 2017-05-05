@@ -94,11 +94,13 @@ public class DetailVehiculeActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        String message =  data.getExtras().getString(Constant.MESSAGE_OK) ;
-        Intent intent = new Intent(DetailVehiculeActivity.this, ListVehiculesActivity.class);
-        intent.putExtra(Constant.MESSAGE_OK, message);
-        setResult(Activity.RESULT_OK, intent);
-        finish();
+        if(data != null) {
+            String message =  data.getExtras().getString(Constant.MESSAGE_OK) ;
+            Intent intent = new Intent(DetailVehiculeActivity.this, ListVehiculesActivity.class);
+            intent.putExtra(Constant.MESSAGE_OK, message);
+            setResult(Activity.RESULT_OK, intent);
+            finish();
+        }
     }
 
     @Override

@@ -80,6 +80,12 @@ public class EditVehiculeActivity extends AppCompatActivity {
 
     public void editVehicule(View view) {
         //Vérifie si on est bien connecté à internet
+        vehicule.setLibelle(editTextLibelle.getText().toString());
+        vehicule.setMarque(editTextMarque.getText().toString());
+        vehicule.setCaracteristiques(editTextCaracteristique.getText().toString());
+        vehicule.setPrix(Float.parseFloat(editTextPrix.getText().toString()));
+        vehicule.setImage(editTextImage.getText().toString());
+        vehicule.setEstLoue(toggleButtonLoue.isChecked());
         if(Network.isNetworkAvailable(EditVehiculeActivity.this))
         {
             // Instantiate the RequestQueue.
@@ -97,6 +103,9 @@ public class EditVehiculeActivity extends AppCompatActivity {
                                 if(json.getBoolean("ok")) {
                                     Intent intent = new Intent(EditVehiculeActivity.this, ListVehiculesActivity.class);
                                     intent.putExtra("ok", json.getString("message"));
+                                    Bundle bundle = new Bundle();
+                                    bundle.putSerializable(Constant.INTENT_VEHICULE, vehicule);
+                                    intent.putExtras(bundle);
                                     setResult(Activity.RESULT_OK, intent);
                                     finish();
                                 }
